@@ -90,9 +90,6 @@
                 border-color: #fa949d;
               }
             }
-            small {
-              color: red;
-            }
           }
         }
         .right-container {
@@ -124,9 +121,6 @@
             &:hover {
               border-color: #fa949d;
             }
-          }
-          small {
-            color: red;
           }
         }
       }
@@ -173,9 +167,7 @@
               }
             }
           }
-          small {
-            color: red;
-          }
+   
         }
       }
       .action-container {
@@ -201,4 +193,8 @@
       }
     }
   }
+}
+small {
+  color: red;
+  display: block;
 }

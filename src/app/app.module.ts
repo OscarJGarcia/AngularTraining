@@ -14,6 +14,9 @@ import { CardComponent } from './shared/components/card/card.component';
 import { PricePipe } from './shared/pipes/price.pipe';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { CartComponent } from './shared/components/cart/cart.component';
+import { NoImageDirective } from './shared/directives/no-image.directive';
+import { NumbersOnlyDirective } from './shared/directives/numbers-only.directive';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,15 @@ import { CartComponent } from './shared/components/cart/cart.component';
     PricePipe,
     ModalComponent,
     CartComponent,
+    NoImageDirective,
+    NumbersOnlyDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

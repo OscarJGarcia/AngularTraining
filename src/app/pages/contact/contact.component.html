@@ -28,7 +28,10 @@
                 <img [src]="icons.user.url" [alt]="icons.user.name">
                 <input type="text" name="name" id="name" formControlName="name">
               </div>
-              <small *ngIf="name?.invalid && (name?.dirty || name?.touched) ">Name is obligatory</small>
+              <small *ngIf="name?.invalid && (name?.dirty || name?.touched) ">
+                <small *ngIf="name?.errors?.['required']">Name is obligatory</small>
+                <small *ngIf="name?.errors?.['invalidName']">Name already exists</small>
+              </small>
             </div>
             <div class="input-group">
               <label for="email">Mail</label>
@@ -45,19 +48,24 @@
               <label for="phone">Phone</label>
               <div class="input-container">
                 <img [src]="icons.smartphone.url" [alt]="icons.smartphone.name">
-                <input type="number" name="phone" id="phone" formControlName="phonenumber">
+                <input type="text" name="phone" numbersOnly id="phone" formControlName="phonenumber" mask="(000) 000-0000" >
               </div>
               <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched) ">
                 <small *ngIf="phone?.errors?.['required']">Phone is obligatory</small>
+                <small *ngIf="phone?.errors?.['minlength']">Phone is too short</small>
+                <small *ngIf="phone?.errors?.['valueIsNotNumber']">it is not a number</small>
               </div>
             </div>
           </div>
           <div class="right-container">
             <label for="message">Message</label>
             <div class="textarea-container">
-              <textarea name="message" id="message" formControlName="message"></textarea>
+              <textarea name="message" id="message" formControlName="message" ></textarea>
             </div>
-            <small *ngIf="message?.invalid && (message?.dirty || message?.touched) ">Message is obligatory</small>
+            <div *ngIf="message?.invalid && (message?.dirty || message?.touched) ">
+              <small *ngIf="message?.errors?.['required']">Message is obligatory</small>
+              <small *ngIf="message?.errors?.['errorMaxLength']">Message is too long</small>
+            </div>
           </div>
         </div>
         <div class="services-container">
@@ -77,9 +85,6 @@
         <div class="action-container">
           <button type="submit" class="submit-button">Send Message</button>
         </div>
-
-
-
       </form>
     </div>
   </section>

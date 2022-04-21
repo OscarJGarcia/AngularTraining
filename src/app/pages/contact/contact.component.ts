@@ -1,8 +1,20 @@
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Message } from 'src/app/models/message';
 import { MessagesService } from 'src/app/services/messages.service';
-import { ICONS } from 'src/app/shared/constants/icon-constans';
+import { ICONS } from 'src/app/shared/constants/icon-constants';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -18,12 +30,22 @@ export class ContactComponent implements OnInit {
     { id: 4, name: 'Other' },
   ];
   isServiceAdded: boolean = false;
-  constructor(private messageService: MessagesService) {
+  constructor(
+    private messageService: MessagesService,
+    private userService: UserService
+  ) {
     this.contactForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required], [this.validName()]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phonenumber: new FormControl('', [Validators.required]),
-      message: new FormControl('', Validators.required),
+      phonenumber: new FormControl('', [
+        Validators.required,
+        Validators.minLength(7),
+        this.controlValueisNumber(),
+      ]),
+      message: new FormControl('', [
+        Validators.required,
+        this.controlValueMaxLength(255),
+      ]),
       services: new FormArray([]),
     });
   }
@@ -41,8 +63,6 @@ export class ContactComponent implements OnInit {
         messageTemp.services
       );
       this.messageService.addMessage(message);
-
-      console.log(message);
     }
   }
   onChangeService(service: any) {
@@ -86,5 +106,38 @@ export class ContactComponent implements OnInit {
   }
   onDeleteMessages() {
     this.messageService.deleteMessages();
+  }
+  private controlValueisNumber(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const numbersOnly = /[^0-9/]*/g;
+      const valueOfControl = control.value;
+      const valueValid = valueOfControl.replace(numbersOnly, '');
+      if (valueValid == valueOfControl) {
+        return null;
+      } else {
+        return { valueIsNotNumber: true };
+      }
+    };
+  }
+
+  private controlValueMaxLength(maxLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const valueOfControl = control.value;
+      if (valueOfControl.length <= maxLength) {
+        return null;
+      } else {
+        return { errorMaxLength: true };
+      }
+    };
+  }
+
+  validName(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.userService.fakeHttp(control.value).pipe(
+        map((result: boolean) => {
+          return result ? { invalidName: true } : null;
+        })
+      );
+    };
   }
 }

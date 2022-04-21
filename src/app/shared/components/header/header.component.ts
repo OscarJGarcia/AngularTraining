@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICONS } from '../../constants/icon-constans';
+import { ICONS } from '../../constants/icon-constants';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
