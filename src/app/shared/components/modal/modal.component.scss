@@ -1,0 +1,33 @@
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .modal-content {
+    padding: 2rem 1rem 2rem 2rem;
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 100;
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #3e1f92;
+      width: 25px;
+    }
+    .modal-content-container {
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}

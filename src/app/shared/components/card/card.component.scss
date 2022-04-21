@@ -1,0 +1,49 @@
+.card-container {
+  padding: 1rem;
+  background: #3e1f92;
+  border-radius: 0.5rem;
+  height: 250px;
+  width: 250px;
+  margin: 1rem 1rem 0 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  .card-title-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    .card-title {
+    }
+    .card-price {
+      background: #fa949d;
+      padding: 0.5rem;
+      border-radius: 10px;
+      height: min-content;
+    }
+  }
+
+  .card-content {
+    flex: 2;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    &::-webkit-scrollbar-thumb:active {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  }
+  .card-action-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

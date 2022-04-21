@@ -1,0 +1,42 @@
+<nav>
+  <div class="logo">
+    <h1>Logo</h1>
+  </div>
+  <ul class="nav-list-web">
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    <li><button type="button" (click)="toggleCart()">
+        <img [src]="iconCart.url" [alt]="iconCart.name">
+        <p>Cart</p>
+      </button>
+    </li>
+  </ul>
+  <div class="mobile-navbar">
+    <img [src]="iconMenu.url" [alt]="iconMenu.name" (click)="toggleMenu()">
+
+    <div class="nav-overlay" *ngIf="isMenuShown">
+      <button class="close-button" (click)="toggleMenu()">X</button>
+      <ul class="nav-list-mobile">
+        <li><a routerLink="/home" routerLinkActive="active" (click)="toggleMenu()">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" (click)="toggleMenu()">About</a></li>
+        <li><a routerLink="/shop" routerLinkActive="active" (click)="toggleMenu()">Shop</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active" (click)="toggleMenu()">Contact</a></li>
+        <li><button type="button" (click)="toggleCart()">
+            <div>
+              <img [src]="iconCart.url" [alt]="iconCart.name">
+              <p>Cart</p>
+            </div>
+          </button>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</nav>
+<app-modal [isOpened]="isOpened" (close)="toggleCart()">
+  <app-cart></app-cart>
+</app-modal>

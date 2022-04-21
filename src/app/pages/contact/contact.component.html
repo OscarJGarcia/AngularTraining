@@ -1,0 +1,87 @@
+<div class="container">
+  <section class="contact-container">
+    <h1>Get in touch!</h1>
+    <p>Contact us for a quote, help ot to join the team.</p>
+    <div class="contact-info">
+      <div class="address-container">
+        <img [src]="icons.location.url" [alt]="icons.location.name">
+        <p>102 Street 2714 Don</p>
+      </div>
+      <div class="phone-container">
+        <img [src]="icons.phone.url" [alt]="icons.phone.name">
+        <p>+02 1234 567</p>
+      </div>
+      <div class="email-container">
+        <img [src]="icons.email.url" [alt]="icons.email.name">
+        <p>hello@email.com</p>
+      </div>
+
+    </div>
+    <div class="contact-form">
+      <h1>Contact form</h1>
+      <form (ngSubmit)="submitForm()" [formGroup]="contactForm">
+        <div class="form-container">
+          <div class="left-form">
+            <div class="input-group">
+              <label for="name">Your Name</label>
+              <div class="input-container">
+                <img [src]="icons.user.url" [alt]="icons.user.name">
+                <input type="text" name="name" id="name" formControlName="name">
+              </div>
+              <small *ngIf="name?.invalid && (name?.dirty || name?.touched) ">Name is obligatory</small>
+            </div>
+            <div class="input-group">
+              <label for="email">Mail</label>
+              <div class="input-container">
+                <img [src]="icons.location.url" [alt]="icons.location.name">
+                <input type="email" name="email" id="email" formControlName="email">
+              </div>
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched) ">
+                <small *ngIf="email?.errors?.['required']">Email is obligatory</small>
+                <small *ngIf="email?.errors?.['email']">Must be an email</small>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="phone">Phone</label>
+              <div class="input-container">
+                <img [src]="icons.smartphone.url" [alt]="icons.smartphone.name">
+                <input type="number" name="phone" id="phone" formControlName="phonenumber">
+              </div>
+              <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched) ">
+                <small *ngIf="phone?.errors?.['required']">Phone is obligatory</small>
+              </div>
+            </div>
+          </div>
+          <div class="right-container">
+            <label for="message">Message</label>
+            <div class="textarea-container">
+              <textarea name="message" id="message" formControlName="message"></textarea>
+            </div>
+            <small *ngIf="message?.invalid && (message?.dirty || message?.touched) ">Message is obligatory</small>
+          </div>
+        </div>
+        <div class="services-container">
+          <div class="service-group">
+            <label for="name">Services</label>
+            <div class="list-container">
+              <div *ngFor="let service of services">
+                <input type="checkbox" (change)="onChangeService(service)">
+                <div>
+                  <label>{{service.name}}</label>
+                </div>
+              </div>
+            </div>
+            <small *ngIf="isServiceAdded && servicesForm.controls.length==0">Select at least one service</small>
+          </div>
+        </div>
+        <div class="action-container">
+          <button type="submit" class="submit-button">Send Message</button>
+        </div>
+
+
+
+      </form>
+    </div>
+  </section>
+
+</div>

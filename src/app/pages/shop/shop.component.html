@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Meals</h1>
+  <div class="mealsContainer">
+    <ng-container *ngFor="let meal of mealsList">
+      <app-card [title]="meal.name" [price]="meal.price">
+        <ng-container content>
+          <p>{{meal.description}}</p>
+        </ng-container>
+        <ng-container action>
+          <button type="button" (click)="onAddMeal(meal)">Add to cart</button>
+        </ng-container>
+      </app-card>
+    </ng-container>
+  </div>
+</div>

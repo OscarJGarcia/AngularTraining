@@ -1,0 +1,118 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-base);
+  padding: 1rem;
+  height: 75px;
+  .logo {
+    h1 {
+      font-size: 28px;
+      font-style: italic;
+    }
+  }
+  .nav-list-web {
+    display: flex;
+    align-items: center;
+    li {
+      display: block;
+      list-style: none;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 1rem;
+      .active {
+        color: #3e1f92;
+      }
+      a {
+        color: inherit;
+        &:hover {
+          color: #3e1f92;
+          transition: all 0.5s ease;
+        }
+      }
+
+      &:last-child {
+        border-left: 1px solid #ccc;
+        button {
+          border: none;
+          background: none;
+          display: flex;
+          align-items: center;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: #3e1f92;
+          transition: all 0.5s ease;
+          cursor: pointer;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  .mobile-navbar {
+    display: none;
+    .nav-overlay {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      inset: 0;
+      background: white;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.5s ease;
+
+      .close-button {
+        padding: 1rem;
+        font-size: 32px;
+        background: none;
+        color: black;
+        position: absolute;
+        border: none;
+        top: 10px;
+        right: 10px;
+      }
+      .nav-list-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        li {
+          display: block;
+          list-style: none;
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 1rem;
+          .active {
+            color: #3e1f92;
+          }
+          a {
+            color: inherit;
+            &:hover {
+              color: #3e1f92;
+              transition: all 0.5s ease;
+            }
+          }
+
+          &:last-child {
+            div {
+              display: flex;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    .nav-list-web {
+      display: none;
+    }
+    .mobile-navbar {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

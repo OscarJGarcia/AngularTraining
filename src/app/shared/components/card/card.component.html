@@ -1,0 +1,12 @@
+<div class="card-container ">
+  <div class="card-title-container">
+    <h2 class="card-title">{{title}}</h2>
+    <p class="card-price">{{price | price}}</p>
+  </div>
+  <div class="card-content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+  <div class="card-action-container">
+    <ng-content select="[action]"></ng-content>
+  </div>
+</div>
