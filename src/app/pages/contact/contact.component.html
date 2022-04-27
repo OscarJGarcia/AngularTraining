@@ -26,7 +26,7 @@
               <label for="name">Your Name</label>
               <div class="input-container">
                 <img [src]="icons.user.url" [alt]="icons.user.name">
-                <input type="text" name="name" id="name" formControlName="name">
+                <input #nameInput type="text" name="name" id="name" formControlName="name">
               </div>
               <small *ngIf="name?.invalid && (name?.dirty || name?.touched) ">
                 <small *ngIf="name?.errors?.['required']">Name is obligatory</small>

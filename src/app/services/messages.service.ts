@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { Message } from '../models/message';
 
 @Injectable({
@@ -40,5 +40,11 @@ export class MessagesService {
 
   get mesg() {
     return this.messages.slice();
+  }
+
+  confirm(message?: string): Observable<boolean> {
+    const confirmation = window.confirm(message || 'Are you sure?');
+
+    return of(confirmation);
   }
 }

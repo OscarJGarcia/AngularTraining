@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private isLogged = new BehaviorSubject<boolean>(false);
+  private isLogged = new BehaviorSubject<boolean>(true);
 
   get _isLogged(): boolean {
     return this.isLogged.value;
@@ -14,5 +14,4 @@ export class LoginService {
   set(isLogged: boolean) {
     this.isLogged.next(isLogged);
   }
-  constructor() {}
 }

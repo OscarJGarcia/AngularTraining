@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserService } from './../../services/user/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -30,6 +30,9 @@ export class ContactComponent implements OnInit {
     { id: 4, name: 'Other' },
   ];
   isServiceAdded: boolean = false;
+
+  @ViewChild('nameInput') nameInput!: ElementRef;
+
   constructor(
     private messageService: MessagesService,
     private userService: UserService
@@ -139,5 +142,12 @@ export class ContactComponent implements OnInit {
         })
       );
     };
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    if (this.contactForm.invalid) {
+      return this.messageService.confirm('Discard changes for Person?');
+    }
+    return true;
   }
 }

@@ -1,3 +1,4 @@
+import { ConfirmationGuard } from './guards/confirmation.guard';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -40,7 +41,7 @@ import { NgxMaskModule } from 'ngx-mask';
     HttpClientModule,
     NgxMaskModule.forRoot(),
   ],
-  providers: [],
+  providers: [ConfirmationGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
