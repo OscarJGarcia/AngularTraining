@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { atcb_action, atcb_init } from 'add-to-calendar-button';
 
 @Component({
   selector: 'app-about',
@@ -18,7 +19,34 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class AboutComponent implements OnInit {
-  constructor() {}
+  public initValue: any = {
+    "name": "Add the title of your event",
+    "description": "A nice description does not hurt",
+    "startDate": "2022-02-21",
+    "endDate": "2022-03-24",
+    "startTime": "10:13",
+    "endTime": "17:57",
+    "location": "Somewhere over the rainbow",
+    "label": "Add to Calendar",
+    "options": [
+      "Apple",
+      "Google",
+      "iCal",
+      "Microsoft365",
+      "Outlook.com",
+      "Yahoo"
+    ],
+    "timeZone": "Europe/Berlin",
+    "iCalFileName": "Reminder-Event"
+  }
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  ngAfterViewInit(): void {
+    atcb_init();
+  }
+
+  public addAction() {
+    atcb_init();
+  }
 }
